@@ -343,7 +343,7 @@ namespace LiveSplit.UI.Components
             {
                 CSVPath = dialog.FileName;
                 IncrementUpdateRequired(this, EventArgs.Empty);
-                string[] message = {  CSVPath };
+                string[] message = { CSVPath };
                 setPointConfigurationTextBox(message, inputFileType.PointConfiguration);
             }
         }
@@ -396,7 +396,7 @@ namespace LiveSplit.UI.Components
 
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                CSVOutputPath= saveFileDialog.FileName;
+                CSVOutputPath = saveFileDialog.FileName;
                 OutputDefaultCSVPointConf(this, EventArgs.Empty);
             }
         }

@@ -12,7 +12,7 @@ using LiveSplit.Options;
 
 namespace LiveSplit.UI.Components
 {
-        
+
     public class EldenRaceCounterComponent : IComponent
     {
         public EldenRaceCounterComponent(LiveSplitState state)
@@ -25,7 +25,7 @@ namespace LiveSplit.UI.Components
             this.state = state;
             Settings.CounterReinitialiseRequired += Settings_CounterReinitialiseRequired;
             Settings.IncrementUpdateRequired += Settings_CSVPathUpdated;
-            Settings.RandomizedMappingUpdateRequired+= Settings_RandomizedMappingUpdated;
+            Settings.RandomizedMappingUpdateRequired += Settings_RandomizedMappingUpdated;
             Settings.OutputDefaultCSVPointConf += Settings_OutputDefaultCSVPointConf;
 
             // Subscribe to input hooks.
@@ -42,12 +42,12 @@ namespace LiveSplit.UI.Components
 
         public float MinimumHeight { get; set; }
 
-        public float MinimumWidth 
-        { 
+        public float MinimumWidth
+        {
             get
             {
                 return CounterNameLabel.X + CounterValueLabel.ActualWidth;
-            } 
+            }
         }
 
         public float HorizontalWidth { get; set; }
@@ -104,7 +104,7 @@ namespace LiveSplit.UI.Components
 
             // Assume most users won't count past four digits (will cause a layout resize in Horizontal Mode).
             float fourCharWidth = g.MeasureString("1000", CounterFont).Width;
-            HorizontalWidth = CounterNameLabel.X + CounterNameLabel.ActualWidth + (fourCharWidth > CounterValueLabel.ActualWidth ? fourCharWidth : CounterValueLabel.ActualWidth) + 5; 
+            HorizontalWidth = CounterNameLabel.X + CounterNameLabel.ActualWidth + (fourCharWidth > CounterValueLabel.ActualWidth ? fourCharWidth : CounterValueLabel.ActualWidth) + 5;
 
             // Set Counter Name Label
             CounterNameLabel.HorizontalAlignment = mode == LayoutMode.Horizontal ? StringAlignment.Near : StringAlignment.Near;
@@ -210,14 +210,14 @@ namespace LiveSplit.UI.Components
         {
             return Settings.GetSettingsHashCode();
         }
-        
+
         /// <summary>
         /// Handles the CounterReinitialiseRequired event of the Settings control.
         /// </summary>
         private void Settings_CounterReinitialiseRequired(object sender, EventArgs e)
         {
             try { Counter = new EldenRaceCounter(); }
-            catch ( Exception ex )
+            catch (Exception ex)
             {
                 Log.Error(ex);
                 MessageBox.Show(ex.Message, "Reset counter error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -237,13 +237,13 @@ namespace LiveSplit.UI.Components
 
         private void Settings_RandomizedMappingUpdated(object sender, EventArgs e)
         {
-            try { Counter.SetRandomizerMapping(Settings.RandomConfPath); } 
-            catch(FileFormatException ex)
+            try { Counter.SetRandomizerMapping(Settings.RandomConfPath); }
+            catch (FileFormatException ex)
             {
                 Log.Error(ex);
                 MessageBox.Show(ex.Message, "Randomized mapping error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void Settings_OutputDefaultCSVPointConf(object sender, EventArgs e)
@@ -254,7 +254,7 @@ namespace LiveSplit.UI.Components
                 Log.Error(ex);
                 MessageBox.Show(ex.Message, "Output Default Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         // Basic support for keyboard/button input.

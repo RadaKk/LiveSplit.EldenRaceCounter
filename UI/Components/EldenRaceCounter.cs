@@ -80,7 +80,7 @@ namespace LiveSplit.UI.Components
             foreach (KeyValuePair<string, uint> entry in eventToMemory)
             {
                 DefaultPointConf.Add(entry.Key, majorBosses.Contains(entry.Key) ? defaultMajorBossesPoints : defaultEventPoints);
-                
+
             }
         }
 
@@ -191,7 +191,7 @@ namespace LiveSplit.UI.Components
 
                 }
             }
-            
+
             applyRandomizedMapping();
         }
 
@@ -213,7 +213,7 @@ namespace LiveSplit.UI.Components
                     i++;
                     //Process row name, points
                     string[] fields = line.Split(' ');
-                    
+
                     if (fields.Length >= 2 && fields[0].StartsWith("--"))
                     {
                         bossSectionReached = fields[1].ToLower().Contains("boss");
@@ -293,7 +293,7 @@ namespace LiveSplit.UI.Components
                                     }
                                 }
                             }
-                            
+
                         }
                     }
                 }
