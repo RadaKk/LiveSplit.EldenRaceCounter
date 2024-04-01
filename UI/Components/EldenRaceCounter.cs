@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace LiveSplit.UI.Components
 {
@@ -15,6 +16,8 @@ namespace LiveSplit.UI.Components
         private Dictionary<string, int> increment = new Dictionary<string, int>();
         private Dictionary<string, uint> eventToMemory = new Dictionary<string, uint>();
         private Dictionary<string, string> randomizerMapping = new Dictionary<string, string>();
+
+        // Only consider Bosses for now
         // private List<Type> EventTypes = new List<Type> { typeof(Boss), typeof(Grace), typeof(ItemPickup) };
         private static readonly List<Type> EventTypes = new List<Type> { typeof(Boss) };
 
@@ -73,6 +76,27 @@ namespace LiveSplit.UI.Components
 
         public int Count { get; private set; }
 
+        public string lastPointsEarnedMsg { get; private set; } = string.Empty;
+
+
+        private void SetLastEarnedPointMessage(string _event, int point, int maxCharPerWord = 5, int maxLength = 20)
+        {
+            string[] eventParts = Regex.Split(_event, @"(?<!^)(?=[A-Z](?![A-Z]|$))");
+            int totalChars = 0;
+            for (int i = 0; i < eventParts.Length; i++)
+            {
+                if (totalChars < maxLength)
+                {
+                    if (eventParts[i].Length > maxCharPerWord)
+                    {
+                        eventParts[i] = eventParts[i].Substring(0,maxCharPerWord) + ".";
+                    }
+                }
+                totalChars += eventParts[i].Length;
+            }
+            lastPointsEarnedMsg = string.Format("{0}pts - {1}", point, string.Join(" ", eventParts));
+        }
+
 
         private void setDefaultConf()
         {
@@ -94,6 +118,8 @@ namespace LiveSplit.UI.Components
                 return false;
 
             List<string> popKeys = new List<string>();
+            int lastValue = 0;
+            string lastKey = null;
             try
             {
                 foreach (KeyValuePair<string, int> entry in increment)
@@ -102,6 +128,8 @@ namespace LiveSplit.UI.Components
                     {
                         Count = checked(Count + entry.Value);
                         popKeys.Add(entry.Key);
+                        lastValue = entry.Value;
+                        lastKey = entry.Key;
                     }
                 }
             }
@@ -114,6 +142,11 @@ namespace LiveSplit.UI.Components
             foreach (string key in popKeys)
             {
                 increment.Remove(key);
+            }
+
+            if (lastKey != null)
+            {
+                SetLastEarnedPointMessage(lastKey, lastValue);
             }
 
             return true;
@@ -337,6 +370,7 @@ namespace LiveSplit.UI.Components
     public interface ICounter
     {
         int Count { get; }
+        string lastPointsEarnedMsg { get; }
 
         bool Increment(IGame ERGame);
         void Reset();

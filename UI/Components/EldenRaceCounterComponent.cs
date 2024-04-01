@@ -96,10 +96,10 @@ namespace LiveSplit.UI.Components
 
             // Calculate Height from Font.
             var textHeight = g.MeasureString("A", CounterFont).Height;
-            VerticalHeight = 1.2f * textHeight;
+            VerticalHeight = 1.2f * textHeight * 2;
             MinimumHeight = MinimumHeight;
 
-            PaddingTop = Math.Max(0, ((VerticalHeight - 0.75f * textHeight) / 2f));
+            PaddingTop = Math.Max(0, ((VerticalHeight / 2 - 0.75f * textHeight) / 2f));
             PaddingBottom = PaddingTop;
 
             // Assume most users won't count past four digits (will cause a layout resize in Horizontal Mode).
@@ -179,9 +179,6 @@ namespace LiveSplit.UI.Components
 
             this.state = state;
 
-            CounterNameLabel.Text = Settings.CounterText;
-            CounterValueLabel.Text = Counter.Count.ToString();
-
             if (state.CurrentPhase == TimerPhase.Running)
             {
                 var refreshGameResult = ERGame.TryRefresh();
@@ -190,6 +187,9 @@ namespace LiveSplit.UI.Components
                     Counter.Increment(ERGame);
                 }
             }
+
+            CounterNameLabel.Text = string.Format("{0}{1}{2}", Settings.CounterText, Environment.NewLine, Counter.lastPointsEarnedMsg);
+            CounterValueLabel.Text = Counter.Count.ToString();
 
             Cache.Restart();
             Cache["CounterNameLabel"] = CounterNameLabel.Text;

@@ -11,7 +11,7 @@ namespace LiveSplit.UI.Components
         public string Description => "Count points during EldenRace run.";
 
         // The sub-menu this component will appear under when adding the component to the layout.
-        public ComponentCategory Category => ComponentCategory.Information;
+        public ComponentCategory Category => ComponentCategory.Other;
 
         public IComponent Create(LiveSplitState state) => new EldenRaceCounterComponent(state);
 
