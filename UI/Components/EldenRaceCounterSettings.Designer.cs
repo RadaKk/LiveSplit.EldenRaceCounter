@@ -48,16 +48,23 @@
             this.btnColor2 = new System.Windows.Forms.Button();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
-            this.chkGlobalHotKeys = new System.Windows.Forms.CheckBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
-            this.txtReset = new System.Windows.Forms.TextBox();
-            this.lblCounterReset = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCounterText = new System.Windows.Forms.TextBox();
+            this.chkGlobalHotKeys = new System.Windows.Forms.CheckBox();
             this.browsePointConf = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.pointConfigurationTextBox = new System.Windows.Forms.TextBox();
+            this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblCounterReset = new System.Windows.Forms.Label();
+            this.txtReset = new System.Windows.Forms.TextBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.pointConfigurationRandomTextBox = new System.Windows.Forms.TextBox();
+            this.pointConfRandomBtn = new System.Windows.Forms.Button();
+            this.randomizerCheckbox = new System.Windows.Forms.CheckBox();
+            this.writeDefaultConfigBtn = new System.Windows.Forms.Button();
+            this.saveFileDialogERPointConf = new System.Windows.Forms.SaveFileDialog();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -65,8 +72,9 @@
             this.tableLayoutPanel2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.tableLayoutPanel4.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -329,6 +337,7 @@
             // groupBox4
             // 
             this.tableLayoutPanel1.SetColumnSpan(this.groupBox4, 4);
+            this.groupBox4.Controls.Add(this.randomizerCheckbox);
             this.groupBox4.Controls.Add(this.tableLayoutPanel5);
             this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox4.Location = new System.Drawing.Point(4, 279);
@@ -343,91 +352,24 @@
             // tableLayoutPanel5
             // 
             this.tableLayoutPanel5.ColumnCount = 2;
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 32.44F));
-            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 67.56F));
-            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 4);
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 21.95122F));
+            this.tableLayoutPanel5.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 78.04878F));
+            this.tableLayoutPanel5.Controls.Add(this.groupBox3, 0, 2);
             this.tableLayoutPanel5.Controls.Add(this.label2, 0, 0);
             this.tableLayoutPanel5.Controls.Add(this.txtCounterText, 1, 0);
-            this.tableLayoutPanel5.Controls.Add(this.chkGlobalHotKeys, 0, 1);
-            this.tableLayoutPanel5.Controls.Add(this.browsePointConf, 1, 2);
-            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 2);
+            this.tableLayoutPanel5.Controls.Add(this.label4, 0, 1);
+            this.tableLayoutPanel5.Controls.Add(this.tableLayoutPanel6, 1, 1);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(4, 19);
             this.tableLayoutPanel5.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 5;
+            this.tableLayoutPanel5.RowCount = 3;
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
-            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 8F));
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel5.Size = new System.Drawing.Size(574, 245);
             this.tableLayoutPanel5.TabIndex = 0;
-            // 
-            // chkGlobalHotKeys
-            // 
-            this.chkGlobalHotKeys.AutoSize = true;
-            this.tableLayoutPanel5.SetColumnSpan(this.chkGlobalHotKeys, 2);
-            this.chkGlobalHotKeys.Location = new System.Drawing.Point(9, 35);
-            this.chkGlobalHotKeys.Margin = new System.Windows.Forms.Padding(9, 4, 4, 4);
-            this.chkGlobalHotKeys.Name = "chkGlobalHotKeys";
-            this.chkGlobalHotKeys.Size = new System.Drawing.Size(171, 20);
-            this.chkGlobalHotKeys.TabIndex = 5;
-            this.chkGlobalHotKeys.Text = "Global Counter Hotkeys";
-            this.chkGlobalHotKeys.UseVisualStyleBackColor = true;
-            // 
-            // groupBox3
-            // 
-            this.tableLayoutPanel5.SetColumnSpan(this.groupBox3, 2);
-            this.groupBox3.Controls.Add(this.tableLayoutPanel4);
-            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupBox3.Location = new System.Drawing.Point(4, 128);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(566, 113);
-            this.groupBox3.TabIndex = 41;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "Hotkeys";
-            // 
-            // tableLayoutPanel4
-            // 
-            this.tableLayoutPanel4.ColumnCount = 2;
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.66842F));
-            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.33158F));
-            this.tableLayoutPanel4.Controls.Add(this.txtReset, 1, 0);
-            this.tableLayoutPanel4.Controls.Add(this.lblCounterReset, 0, 0);
-            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 19);
-            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
-            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 1;
-            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
-            this.tableLayoutPanel4.Size = new System.Drawing.Size(558, 90);
-            this.tableLayoutPanel4.TabIndex = 0;
-            // 
-            // txtReset
-            // 
-            this.txtReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtReset.BackColor = System.Drawing.SystemColors.Menu;
-            this.txtReset.Location = new System.Drawing.Point(180, 4);
-            this.txtReset.Margin = new System.Windows.Forms.Padding(4);
-            this.txtReset.Name = "txtReset";
-            this.txtReset.Size = new System.Drawing.Size(374, 22);
-            this.txtReset.TabIndex = 6;
-            // 
-            // lblCounterReset
-            // 
-            this.lblCounterReset.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.lblCounterReset.AutoSize = true;
-            this.lblCounterReset.Location = new System.Drawing.Point(4, 37);
-            this.lblCounterReset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblCounterReset.Name = "lblCounterReset";
-            this.lblCounterReset.Size = new System.Drawing.Size(95, 16);
-            this.lblCounterReset.TabIndex = 3;
-            this.lblCounterReset.Text = "Reset Counter:";
             // 
             // label2
             // 
@@ -443,20 +385,31 @@
             // txtCounterText
             // 
             this.txtCounterText.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtCounterText.Location = new System.Drawing.Point(190, 4);
+            this.txtCounterText.Location = new System.Drawing.Point(130, 4);
             this.txtCounterText.Margin = new System.Windows.Forms.Padding(4);
             this.txtCounterText.Name = "txtCounterText";
-            this.txtCounterText.Size = new System.Drawing.Size(380, 22);
+            this.txtCounterText.Size = new System.Drawing.Size(440, 22);
             this.txtCounterText.TabIndex = 43;
+            // 
+            // chkGlobalHotKeys
+            // 
+            this.chkGlobalHotKeys.AutoSize = true;
+            this.chkGlobalHotKeys.Location = new System.Drawing.Point(184, 0);
+            this.chkGlobalHotKeys.Margin = new System.Windows.Forms.Padding(9, 4, 4, 4);
+            this.chkGlobalHotKeys.Name = "chkGlobalHotKeys";
+            this.chkGlobalHotKeys.Size = new System.Drawing.Size(171, 20);
+            this.chkGlobalHotKeys.TabIndex = 5;
+            this.chkGlobalHotKeys.Text = "Global Counter Hotkeys";
+            this.chkGlobalHotKeys.UseVisualStyleBackColor = true;
             // 
             // browsePointConf
             // 
             this.browsePointConf.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.browsePointConf.Location = new System.Drawing.Point(189, 65);
+            this.browsePointConf.Location = new System.Drawing.Point(3, 78);
             this.browsePointConf.Name = "browsePointConf";
-            this.browsePointConf.Size = new System.Drawing.Size(382, 25);
+            this.browsePointConf.Size = new System.Drawing.Size(214, 32);
             this.browsePointConf.TabIndex = 44;
             this.browsePointConf.Text = "Open Points Configuration";
             this.browsePointConf.UseVisualStyleBackColor = true;
@@ -464,18 +417,164 @@
             // 
             // label4
             // 
-            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(3, 62);
+            this.label4.Location = new System.Drawing.Point(3, 31);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 31);
+            this.label4.Size = new System.Drawing.Size(120, 155);
             this.label4.TabIndex = 45;
             this.label4.Text = "Point configuration:";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // pointConfigurationTextBox
+            // 
+            this.pointConfigurationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pointConfigurationTextBox.Location = new System.Drawing.Point(3, 3);
+            this.pointConfigurationTextBox.Multiline = true;
+            this.pointConfigurationTextBox.Name = "pointConfigurationTextBox";
+            this.pointConfigurationTextBox.ReadOnly = true;
+            this.pointConfigurationTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.pointConfigurationTextBox.Size = new System.Drawing.Size(214, 69);
+            this.pointConfigurationTextBox.TabIndex = 46;
+            // 
+            // tableLayoutPanel4
+            // 
+            this.tableLayoutPanel4.ColumnCount = 2;
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 31.66842F));
+            this.tableLayoutPanel4.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 68.33158F));
+            this.tableLayoutPanel4.Controls.Add(this.txtReset, 1, 0);
+            this.tableLayoutPanel4.Controls.Add(this.lblCounterReset, 0, 0);
+            this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel4.Location = new System.Drawing.Point(4, 19);
+            this.tableLayoutPanel4.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanel4.Name = "tableLayoutPanel4";
+            this.tableLayoutPanel4.RowCount = 1;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 90F));
+            this.tableLayoutPanel4.Size = new System.Drawing.Size(558, 28);
+            this.tableLayoutPanel4.TabIndex = 0;
+            // 
+            // lblCounterReset
+            // 
+            this.lblCounterReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblCounterReset.AutoSize = true;
+            this.lblCounterReset.Location = new System.Drawing.Point(4, 0);
+            this.lblCounterReset.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCounterReset.Name = "lblCounterReset";
+            this.lblCounterReset.Size = new System.Drawing.Size(168, 90);
+            this.lblCounterReset.TabIndex = 3;
+            this.lblCounterReset.Text = "Reset Counter:";
+            // 
+            // txtReset
+            // 
+            this.txtReset.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReset.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtReset.Location = new System.Drawing.Point(180, 4);
+            this.txtReset.Margin = new System.Windows.Forms.Padding(4);
+            this.txtReset.Name = "txtReset";
+            this.txtReset.Size = new System.Drawing.Size(374, 22);
+            this.txtReset.TabIndex = 6;
+            // 
+            // groupBox3
+            // 
+            this.tableLayoutPanel5.SetColumnSpan(this.groupBox3, 2);
+            this.groupBox3.Controls.Add(this.tableLayoutPanel4);
+            this.groupBox3.Controls.Add(this.chkGlobalHotKeys);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Location = new System.Drawing.Point(4, 190);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Size = new System.Drawing.Size(566, 51);
+            this.groupBox3.TabIndex = 41;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Hotkeys";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 2;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.writeDefaultConfigBtn, 0, 2);
+            this.tableLayoutPanel6.Controls.Add(this.pointConfRandomBtn, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.pointConfigurationRandomTextBox, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.browsePointConf, 0, 1);
+            this.tableLayoutPanel6.Controls.Add(this.pointConfigurationTextBox, 0, 0);
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(129, 34);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 3;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 66.40625F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.59375F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 35F));
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(441, 149);
+            this.tableLayoutPanel6.TabIndex = 47;
+            // 
+            // pointConfigurationRandomTextBox
+            // 
+            this.pointConfigurationRandomTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pointConfigurationRandomTextBox.Location = new System.Drawing.Point(223, 3);
+            this.pointConfigurationRandomTextBox.Multiline = true;
+            this.pointConfigurationRandomTextBox.Name = "pointConfigurationRandomTextBox";
+            this.pointConfigurationRandomTextBox.ReadOnly = true;
+            this.pointConfigurationRandomTextBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.pointConfigurationRandomTextBox.Size = new System.Drawing.Size(215, 69);
+            this.pointConfigurationRandomTextBox.TabIndex = 47;
+            // 
+            // pointConfRandomBtn
+            // 
+            this.pointConfRandomBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pointConfRandomBtn.Enabled = false;
+            this.pointConfRandomBtn.Location = new System.Drawing.Point(223, 78);
+            this.pointConfRandomBtn.Name = "pointConfRandomBtn";
+            this.pointConfRandomBtn.Size = new System.Drawing.Size(215, 32);
+            this.pointConfRandomBtn.TabIndex = 48;
+            this.pointConfRandomBtn.Text = "Random spoil log";
+            this.pointConfRandomBtn.UseVisualStyleBackColor = true;
+            this.pointConfRandomBtn.Click += new System.EventHandler(this.pointConfRandomBtn_Click);
+            // 
+            // randomizerCheckbox
+            // 
+            this.randomizerCheckbox.AutoSize = true;
+            this.randomizerCheckbox.Location = new System.Drawing.Point(136, 0);
+            this.randomizerCheckbox.Margin = new System.Windows.Forms.Padding(9, 4, 4, 4);
+            this.randomizerCheckbox.Name = "randomizerCheckbox";
+            this.randomizerCheckbox.Size = new System.Drawing.Size(135, 20);
+            this.randomizerCheckbox.TabIndex = 6;
+            this.randomizerCheckbox.Text = "Randomizer used";
+            this.randomizerCheckbox.UseVisualStyleBackColor = true;
+            this.randomizerCheckbox.CheckedChanged += new System.EventHandler(this.randomizerCheckbox_CheckedChanged);
+            // 
+            // writeDefaultConfigBtn
+            // 
+            this.writeDefaultConfigBtn.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.writeDefaultConfigBtn.Location = new System.Drawing.Point(3, 116);
+            this.writeDefaultConfigBtn.Name = "writeDefaultConfigBtn";
+            this.writeDefaultConfigBtn.Size = new System.Drawing.Size(214, 30);
+            this.writeDefaultConfigBtn.TabIndex = 49;
+            this.writeDefaultConfigBtn.Text = "Write default config";
+            this.writeDefaultConfigBtn.UseVisualStyleBackColor = true;
+            this.writeDefaultConfigBtn.Click += new System.EventHandler(this.writeDefaultConfigBtn_Click);
+            // 
+            // saveFileDialogERPointConf
+            // 
+            this.saveFileDialogERPointConf.FileName = "default_elden_race_point_conf.csv";
             // 
             // EldenRaceCounterSettings
             // 
@@ -495,11 +594,15 @@
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel5.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
             this.tableLayoutPanel4.ResumeLayout(false);
             this.tableLayoutPanel4.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -527,14 +630,21 @@
         private System.Windows.Forms.Button btnColor3;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
-        private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
-        private System.Windows.Forms.TextBox txtReset;
-        private System.Windows.Forms.Label lblCounterReset;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtCounterText;
         private System.Windows.Forms.CheckBox chkGlobalHotKeys;
         private System.Windows.Forms.Button browsePointConf;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
+        private System.Windows.Forms.TextBox txtReset;
+        private System.Windows.Forms.Label lblCounterReset;
+        private System.Windows.Forms.TextBox pointConfigurationTextBox;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private System.Windows.Forms.CheckBox randomizerCheckbox;
+        private System.Windows.Forms.Button pointConfRandomBtn;
+        private System.Windows.Forms.TextBox pointConfigurationRandomTextBox;
+        private System.Windows.Forms.Button writeDefaultConfigBtn;
+        private System.Windows.Forms.SaveFileDialog saveFileDialogERPointConf;
     }
 }

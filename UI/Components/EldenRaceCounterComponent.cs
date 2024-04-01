@@ -7,6 +7,8 @@ using System.Windows.Forms;
 using LiveSplit.Model.Input;
 using System.Linq;
 using SoulMemory.EldenRing;
+using System.IO;
+using LiveSplit.Options;
 
 namespace LiveSplit.UI.Components
 {
@@ -23,6 +25,8 @@ namespace LiveSplit.UI.Components
             this.state = state;
             Settings.CounterReinitialiseRequired += Settings_CounterReinitialiseRequired;
             Settings.IncrementUpdateRequired += Settings_CSVPathUpdated;
+            Settings.RandomizedMappingUpdateRequired+= Settings_RandomizedMappingUpdated;
+            Settings.OutputDefaultCSVPointConf += Settings_OutputDefaultCSVPointConf;
 
             // Subscribe to input hooks.
             Settings.Hook.KeyOrButtonPressed += hook_KeyOrButtonPressed;
@@ -212,12 +216,45 @@ namespace LiveSplit.UI.Components
         /// </summary>
         private void Settings_CounterReinitialiseRequired(object sender, EventArgs e)
         {
-            Counter = new EldenRaceCounter();
+            try { Counter = new EldenRaceCounter(); }
+            catch ( Exception ex )
+            {
+                Log.Error(ex);
+                MessageBox.Show(ex.Message, "Reset counter error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void Settings_CSVPathUpdated(object sender, EventArgs e)
         {
-            Counter.SetIncrement(Settings.CSVPath);
+            try { Counter.SetIncrement(Settings.CSVPath); }
+            catch (FileFormatException ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show(ex.Message, "Configuration CSV error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void Settings_RandomizedMappingUpdated(object sender, EventArgs e)
+        {
+            try { Counter.SetRandomizerMapping(Settings.RandomConfPath); } 
+            catch(FileFormatException ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show(ex.Message, "Randomized mapping error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void Settings_OutputDefaultCSVPointConf(object sender, EventArgs e)
+        {
+            try { Counter.OutputIncrement(Settings.CSVOutputPath); }
+            catch (Exception ex)
+            {
+                Log.Error(ex);
+                MessageBox.Show(ex.Message, "Output Default Config error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
 
         // Basic support for keyboard/button input.

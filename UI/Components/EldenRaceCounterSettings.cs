@@ -1,15 +1,10 @@
 ﻿using LiveSplit.Options;
 using System;
 using System.Drawing;
-using System.Globalization;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using LiveSplit.Model.Input;
-using System.Threading;
-using System.Collections.Generic;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Window;
 
 namespace LiveSplit.UI.Components
 {
@@ -82,11 +77,21 @@ namespace LiveSplit.UI.Components
 
         public string CounterText { get; set; }
         public string CSVPath { get; set; }
+        public string RandomConfPath { get; set; }
+        public string CSVOutputPath { get; set; }
 
         public KeyOrButton ResetKey { get; set; }
 
         public event EventHandler CounterReinitialiseRequired;
         public event EventHandler IncrementUpdateRequired;
+        public event EventHandler RandomizedMappingUpdateRequired;
+        public event EventHandler OutputDefaultCSVPointConf;
+
+        private enum inputFileType
+        {
+            PointConfiguration,
+            PointConfigurationRandom
+        }
 
         public void SetSettings(XmlNode node)
         {
@@ -136,7 +141,6 @@ namespace LiveSplit.UI.Components
             SettingsHelper.CreateSetting(document, parent, "BackgroundGradient", BackgroundGradient) ^
             SettingsHelper.CreateSetting(document, parent, "CounterText", CounterText) ^
             SettingsHelper.CreateSetting(document, parent, "CSVPath", CSVPath) ^
-            // SettingsHelper.CreateSetting(document, parent, "Increment", Increment) ^
             SettingsHelper.CreateSetting(document, parent, "ResetKey", ResetKey);
         }
 
@@ -330,13 +334,70 @@ namespace LiveSplit.UI.Components
 
         private void browsePointConf_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.DefaultExt = "csv";
-            
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                DefaultExt = "csv"
+            };
+
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 CSVPath = dialog.FileName;
                 IncrementUpdateRequired(this, EventArgs.Empty);
+                string[] message = {  CSVPath };
+                setPointConfigurationTextBox(message, inputFileType.PointConfiguration);
+            }
+        }
+
+        private void pointConfRandomBtn_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog
+            {
+                DefaultExt = "txt"
+            };
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                RandomConfPath = dialog.FileName;
+                RandomizedMappingUpdateRequired(this, EventArgs.Empty);
+                string[] message = { RandomConfPath };
+
+                setPointConfigurationTextBox(message, inputFileType.PointConfigurationRandom);
+            }
+        }
+
+        private void setPointConfigurationTextBox(string[] messageParts, inputFileType inputType)
+        {
+            var txtBox = inputType == inputFileType.PointConfiguration ? pointConfigurationTextBox : pointConfigurationRandomTextBox;
+
+            txtBox.Text = "";
+            for (int i = 0; i < messageParts.Length; i++)
+            {
+                txtBox.AppendText(messageParts[i]);
+                if (i < messageParts.Length - 1)
+                {
+                    txtBox.AppendText(Environment.NewLine);
+                }
+            }
+        }
+
+        private void randomizerCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            pointConfRandomBtn.Enabled = randomizerCheckbox.Checked;
+        }
+
+        private void writeDefaultConfigBtn_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog
+            {
+                InitialDirectory = Environment.CurrentDirectory,
+                DefaultExt = "csv",
+                FileName = "default_elden_race_point_configuration.csv"
+            };
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                CSVOutputPath= saveFileDialog.FileName;
+                OutputDefaultCSVPointConf(this, EventArgs.Empty);
             }
         }
     }
