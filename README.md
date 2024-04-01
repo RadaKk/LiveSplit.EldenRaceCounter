@@ -21,5 +21,5 @@ It is based on the [Livesplit.Counter](https://github.com/LiveSplit/LiveSplit.Co
     GraftedScionChapelOfAnticipation,2
     ```
 - `Write default configuration`: output the configuration `csv` with the correct format with 2 categories (default major bosses: 10pts and all others 2pts).
-- `Randomizer mapping`: use the `spoiler_logs/.*.txt` file from the (Enemy randomizer mode)[https://www.nexusmods.com/eldenring/mods/428]. If the default configuration is not used, it will correctly map the boss points with the randomizer.
+- `Randomizer mapping`: use the `spoiler_logs/.*.txt` file from the [Enemy randomizer mode](https://www.nexusmods.com/eldenring/mods/428). If the default configuration is not used, it will correctly map the boss points with the randomizer.
 
