@@ -71,6 +71,8 @@ namespace LiveSplit.UI.Components
 
         private EldenRing ERGame = new EldenRing();
 
+        private bool ConfigurationWarningAlreadyShown = false;
+
         private void DrawGeneral(Graphics g, Model.LiveSplitState state, float width, float height, LayoutMode mode)
         {
             // Set Background colour.
@@ -181,6 +183,16 @@ namespace LiveSplit.UI.Components
 
             if (state.CurrentPhase == TimerPhase.Running)
             {
+                if (!ConfigurationWarningAlreadyShown && Counter.IncrementMap.Count == 0)
+                {
+                    MessageBox.Show(
+                        "No points configuration set, default configuration will be used.",
+                        "Use Default point configuration", 
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning
+                    );
+                    Counter.SetDefaultIncrement();
+                    ConfigurationWarningAlreadyShown = true;
+                }
                 var refreshGameResult = ERGame.TryRefresh();
                 if (!refreshGameResult.IsErr)
                 {
@@ -228,7 +240,7 @@ namespace LiveSplit.UI.Components
         private void Settings_CSVPathUpdated(object sender, EventArgs e)
         {
             try { Counter.SetIncrement(Settings.CSVPath); }
-            catch (FileFormatException ex)
+            catch (Exception ex)
             {
                 Log.Error(ex);
                 MessageBox.Show(ex.Message, "Configuration CSV error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -238,7 +250,7 @@ namespace LiveSplit.UI.Components
         private void Settings_RandomizedMappingUpdated(object sender, EventArgs e)
         {
             try { Counter.SetRandomizerMapping(Settings.RandomConfPath); }
-            catch (FileFormatException ex)
+            catch (Exception ex)
             {
                 Log.Error(ex);
                 MessageBox.Show(ex.Message, "Randomized mapping error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -270,6 +282,7 @@ namespace LiveSplit.UI.Components
         private void reset(object sender, TimerPhase e)
         {
             Counter.Reset();
+            ConfigurationWarningAlreadyShown = false;
         }
     }
 }

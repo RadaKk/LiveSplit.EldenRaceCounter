@@ -12,8 +12,8 @@ namespace LiveSplit.UI.Components
     public class EldenRaceCounter : ICounter
     {
         private int initialValue = 0;
-        private Dictionary<string, int> initialIncrement = new Dictionary<string, int>();
-        private Dictionary<string, int> increment = new Dictionary<string, int>();
+        private Dictionary<string, int> InitialIncrementMap = new Dictionary<string, int>();
+        public Dictionary<string, int> IncrementMap { get; private set; } = new Dictionary<string, int>();
         private Dictionary<string, uint> eventToMemory = new Dictionary<string, uint>();
         private Dictionary<string, string> randomizerMapping = new Dictionary<string, string>();
 
@@ -65,7 +65,6 @@ namespace LiveSplit.UI.Components
         /// Initializes a new instance of the <see cref="Counter"/> class.
         /// </summary>
         /// <param name="initialValue">The initial value for the counter.</param>
-        /// <param name="increment">The amount to be used for incrementing/decrementing.</param>
         public EldenRaceCounter(int initialValue = 0)
         {
             this.initialValue = initialValue;
@@ -122,7 +121,7 @@ namespace LiveSplit.UI.Components
             string lastKey = null;
             try
             {
-                foreach (KeyValuePair<string, int> entry in increment)
+                foreach (KeyValuePair<string, int> entry in IncrementMap)
                 {
                     if (ERGame.ReadEventFlag(eventToMemory[entry.Key]))
                     {
@@ -141,7 +140,7 @@ namespace LiveSplit.UI.Components
 
             foreach (string key in popKeys)
             {
-                increment.Remove(key);
+                IncrementMap.Remove(key);
             }
 
             if (lastKey != null)
@@ -158,8 +157,9 @@ namespace LiveSplit.UI.Components
         public void Reset()
         {
             Count = initialValue;
-            increment = new Dictionary<string, int>(initialIncrement);
+            IncrementMap = new Dictionary<string, int>(InitialIncrementMap);
             randomizerMapping.Clear();
+            lastPointsEarnedMsg = string.Empty;
             SetEventToMemory();
             setDefaultConf();
         }
@@ -186,13 +186,13 @@ namespace LiveSplit.UI.Components
         }
 
         /// <summary>
-        /// Sets the map value increment from eventName to points.
+        /// Sets the map value IncrementMap from eventName to points.
         /// </summary>
         /// <param name="csvPath"></param>
         public void SetIncrement(string csvPath)
         {
-            increment = new Dictionary<string, int>();
-            initialIncrement = new Dictionary<string, int>();
+            IncrementMap = new Dictionary<string, int>();
+            InitialIncrementMap = new Dictionary<string, int>();
 
             using (TextFieldParser parser = new TextFieldParser(csvPath))
             {
@@ -219,13 +219,19 @@ namespace LiveSplit.UI.Components
                         throw new FileFormatException("Unknown event: " + eventName + " at line " + i);
                     }
 
-                    increment[eventName] = eventPoints;
-                    initialIncrement[eventName] = eventPoints;
+                    IncrementMap[eventName] = eventPoints;
+                    InitialIncrementMap[eventName] = eventPoints;
 
                 }
             }
 
             applyRandomizedMapping();
+        }
+
+        public void SetDefaultIncrement()
+        {
+            InitialIncrementMap = new Dictionary<string, int>(DefaultPointConf);
+            IncrementMap = new Dictionary<string, int>(DefaultPointConf);
         }
 
         public void SetRandomizerMapping(string txtFile)
@@ -342,15 +348,15 @@ namespace LiveSplit.UI.Components
                 return;
             }
 
-            // Apply randomized mapping to initial_increment then copy it to increment
+            // Apply randomized mapping to initial_increment then copy it to IncrementMap
             Dictionary<string, int> newIncrement = new Dictionary<string, int>();
-            foreach (KeyValuePair<string, int> entry in initialIncrement)
+            foreach (KeyValuePair<string, int> entry in InitialIncrementMap)
             {
                 string newKeyName = randomizerMapping.ContainsKey(entry.Key) ? randomizerMapping[entry.Key] : "@@@KEY_NOT_FOUND@@@";
-                newIncrement.Add(entry.Key, initialIncrement.ContainsKey(newKeyName) ? initialIncrement[newKeyName] : entry.Value);
+                newIncrement.Add(entry.Key, InitialIncrementMap.ContainsKey(newKeyName) ? InitialIncrementMap[newKeyName] : entry.Value);
             }
-            initialIncrement = newIncrement;
-            increment = new Dictionary<string, int>(newIncrement);
+            InitialIncrementMap = newIncrement;
+            IncrementMap = new Dictionary<string, int>(newIncrement);
         }
 
         public void OutputIncrement(string csvPath)
@@ -371,6 +377,8 @@ namespace LiveSplit.UI.Components
     {
         int Count { get; }
         string lastPointsEarnedMsg { get; }
+
+        Dictionary<string, int> IncrementMap { get; }
 
         bool Increment(IGame ERGame);
         void Reset();
