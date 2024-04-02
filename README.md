@@ -14,12 +14,13 @@ Plugin tested with LiveSplit 1.8.28
 
 1. Download LiveSplit release archive from their [GitHub repository](https://github.com/LiveSplit/LiveSplit/releases) or [website](https://livesplit.org/downloads/)
 2. Unzip the archive
-3. Download this repository DLLs from the folder `Component`: `SoulMemory.dll` and `LiveSplit.EldenRaceCounter.dll` (use the download raw file button from each of the file page)
-4. Place the DLLs in your local LiveSplit folder `.../LiveSplit/Components`
+3. Download the latest [LiveSplit.EldenRaceCounter release archive](https://github.com/RadaKk/LiveSplit.EldenRaceCounter/releases). It should contain: `SoulMemory.dll`, `LiveSplit.EldenRaceCounter.dll` and `EldenRace.lsl`
+4. Place the DLLs in your local LiveSplit folder `.../LiveSplit/Components` and the `EldenRace.lsl` anywhere you want
 
 ## How to create a basic layout using this plugin?
 
-Download the pre-configured layout `EldenRace.lsl` at the root of this repository and double-click on it.
+If you have already run LiveSplit once, simply run the pre-configured layout `EldenRace.lsl`.  
+Otherwise, In LiveSlpit, right click on the timer, `Open Layout / From File...` and navigate to `EldenRace.lsl`.
 
 This will load the layout, the default configuration will be loaded. However, it is possible to configure the points settings:
 
