@@ -22,7 +22,11 @@ Plugin tested with LiveSplit 1.8.28
 If you have already run LiveSplit once, simply run the pre-configured layout `EldenRace.lsl`.  
 Otherwise, In LiveSplit, right-click on the timer, `Open Layout / From File...` and navigate to `EldenRace.lsl`.
 
-This will load the pre-configured layout with the default configuration will be loaded. However, it is possible to configure the points settings:
+This will load the pre-configured layout with the default configuration.
+
+> **Note**: The timer must be started for the point to be counted: right-click on the timer, `Control`, `Start` (ignore the warning message in this case)
+
+However, it is possible to configure the points settings:
 
 - Right-click on the LiveSplit window
 - Navigate to: `Edit Layout... / Layout Settings / EldenRace Counter`
